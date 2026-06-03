@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Truth or Drink - Neon Night Edition</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@600&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e8dfee",
+                        "on-tertiary": "#00382f",
+                        "primary-fixed": "#ecdcff",
+                        "on-primary": "#42008a",
+                        "background": "#0a0a12",
+                        "inverse-on-surface": "#332e39",
+                        "on-secondary-fixed-variant": "#90003b",
+                        "on-primary-fixed": "#270057",
+                        "on-primary-fixed-variant": "#5f00c0",
+                        "surface-container-highest": "#38333e",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#3f0016",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#2d2833",
+                        "on-secondary-container": "#5a0022",
+                        "tertiary-fixed": "#26fedc",
+                        "outline-variant": "#4b4455",
+                        "tertiary": "#00dfc1",
+                        "surface": "#16121b",
+                        "surface-dim": "#16121b",
+                        "primary": "#d5baff",
+                        "tertiary-fixed-dim": "#00dfc1",
+                        "on-tertiary-fixed-variant": "#005144",
+                        "surface-container": "#221e28",
+                        "on-surface-variant": "#cdc2d8",
+                        "inverse-surface": "#e8dfee",
+                        "primary-fixed-dim": "#d5baff",
+                        "surface-tint": "#d5baff",
+                        "secondary": "#ffb2bf",
+                        "on-tertiary-container": "#67ffe2",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#007564",
+                        "primary-container": "#8338ec",
+                        "surface-container-lowest": "#100c16",
+                        "on-primary-container": "#f0e2ff",
+                        "on-error": "#690005",
+                        "on-background": "#e8dfee",
+                        "inverse-primary": "#792ae2",
+                        "outline": "#968da1",
+                        "secondary-fixed-dim": "#ffb2bf",
+                        "secondary-container": "#ff4d80",
+                        "on-secondary": "#660028",
+                        "surface-bright": "#3c3742",
+                        "secondary-fixed": "#ffd9de",
+                        "on-tertiary-fixed": "#00201a",
+                        "surface-container-low": "#1e1a24",
+                        "surface-variant": "#38333e",
+                        "neon-purple": "#8338ec",
+                        "neon-pink": "#ff006e",
+                        "neon-cyan": "#00f5d4",
+                        "neon-gold": "#ffae19",
+                        "neon-red": "#e63946"
+                    },
+                    fontFamily: {
+                        'display': ['Sora', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'draw-card': 'draw-card 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+                        'fade-in': 'fade-in 0.4s ease-out forwards',
+                        'fade-out': 'fade-out 0.4s ease-in forwards',
+                        'power-up': 'power-up 1.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.02)' },
+                        },
+                        'draw-card': {
+                            '0%': { transform: 'translateY(100px) scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
+                        },
+                        'fade-in': {
+                            '0%': { opacity: '0', transform: 'scale(0.98)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        'fade-out': {
+                            '0%': { opacity: '1', transform: 'scale(1)' },
+                            '100%': { opacity: '0', transform: 'scale(1.02)' },
+                        },
+                        'power-up': {
+                            '0%': { boxShadow: '0 0 0 0 rgba(131, 56, 236, 0.7)' },
+                            '100%': { boxShadow: '0 0 50px 20px rgba(131, 56, 236, 0)', transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a12;
+            background-image:
+                radial-gradient(circle at 50% 50%, rgba(131, 56, 236, 0.08) 0%, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            color: #e8dfee;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .title-glow {
+            text-shadow: 0 0 15px rgba(213, 186, 255, 0.5), 0 0 30px rgba(131, 56, 236, 0.3);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .glass {
+            background: rgba(22, 18, 27, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-perspective {
+            perspective: 1500px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-front {
+            transform: rotateY(180deg);
+            background: #1d183a;
+            border: 4px double transparent;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #130f26 0%, #1d183a 100%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .neon-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .neon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .neon-btn:hover::before {
+            left: 100%;
+        }
+
+        .selection-card {
+            transition: all 0.3s ease;
+        }
+
+        .selection-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(131, 56, 236, 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .selection-card:hover {
+                transform: translateY(-10px) scale(1.05);
+            }
+        }
+
+        .hidden-anim {
+            display: none !important;
+            opacity: 0;
+        }
+
+        .screen-transition {
+            animation: fade-in 0.5s ease-out forwards;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .selection-zone {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .selection-zone {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="flex flex-col items-center justify-center p-4 md:p-8 min-h-screen">
+    <header class="text-center mb-6 md:mb-10 z-10 w-full">
+        <h1
+            class="text-3xl sm:text-4xl md:text-6xl font-extrabold uppercase tracking-widest title-glow mb-2 text-primary px-4">
+            Truth or Drink
+        </h1>
+        <p class="text-on-surface-variant font-display font-medium tracking-wide text-xs sm:text-sm">
+            NEON NIGHT EDITION
+        </p>
+    </header>
+    <!-- CONFIGURATION SCREEN -->
+    <div class="glass rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-12 w-full max-w-2xl shadow-2xl z-10 screen-transition"
+        id="setup_screen">
+        <div class="space-y-6 md:space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div class="space-y-3">
+                    <label
+                        class="font-display font-semibold text-[10px] sm:text-xs tracking-widest uppercase text-on-surface-variant">Jugadores</label>
+                    <select
+                        class="w-full bg-surface-container-low border border-outline-variant rounded-xl p-3 md:p-4 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none appearance-none cursor-pointer font-body text-sm md:text-base"
+                        id="player_count" onchange="updateSetupDefaults()">
+                        <option value="3">3 - 4 Jugadores</option>
+                        <option value="5">5 - 7 Jugadores</option>
+                        <option value="8">8+ Jugadores</option>
+                        <option value="2">2 Jugadores (Duelo)</option>
+                    </select>
+                </div>
+                <div class="space-y-3" id="score_setting_container">
+                    <label
+                        class="font-display font-semibold text-[10px] sm:text-xs tracking-widest uppercase text-on-surface-variant">Puntos
+                        para Ganar</label>
+                    <div class="relative">
+                        <input
+                            class="w-full bg-surface-container-low border border-outline-variant rounded-xl p-3 md:p-4 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none font-body text-sm md:text-base"
+                            id="target_score" readonly="" type="text" value="5 (Auto)" />
+                        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none opacity-40">
+                            <span class="material-symbols-outlined text-sm">lock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <label
+                    class="font-display font-semibold text-[10px] sm:text-xs tracking-widest uppercase text-on-surface-variant block">Selecciona
+                    tus Mazos</label>
+                <div class="grid grid-cols-2 gap-3 md:gap-4">
+                    <label class="relative cursor-pointer group">
+                        <input checked="" class="peer hidden" id="deck_happy" type="checkbox" />
+                        <div
+                            class="p-3 md:p-4 rounded-xl border-2 border-neon-gold text-neon-gold font-bold text-center transition-all peer-checked:bg-neon-gold peer-checked:text-background group-hover:scale-[1.02] text-xs md:text-sm">
+                            Happy Hour
+                        </div>
+                    </label>
+                    <label class="relative cursor-pointer group">
+                        <input checked="" class="peer hidden" id="deck_rocks" type="checkbox" />
+                        <div
+                            class="p-3 md:p-4 rounded-xl border-2 border-neon-red text-neon-red font-bold text-center transition-all peer-checked:bg-neon-red peer-checked:text-background group-hover:scale-[1.02] text-xs md:text-sm">
+                            On The Rocks
+                        </div>
+                    </label>
+                    <label class="relative cursor-pointer group">
+                        <input class="peer hidden" id="deck_last" type="checkbox" />
+                        <div
+                            class="p-3 md:p-4 rounded-xl border-2 border-neon-purple text-neon-purple font-bold text-center transition-all peer-checked:bg-neon-purple peer-checked:text-white group-hover:scale-[1.02] text-xs md:text-sm">
+                            Last Call
+                        </div>
+                    </label>
+                    <label class="relative cursor-pointer group">
+                        <input class="peer hidden" id="deck_dirty" type="checkbox" />
+                        <div
+                            class="p-3 md:p-4 rounded-xl border-2 border-neon-cyan text-neon-cyan font-bold text-center transition-all peer-checked:bg-neon-cyan peer-checked:text-background group-hover:scale-[1.02] text-xs md:text-sm">
+                            Extra Dirty
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="pt-2">
+                <button
+                    class="neon-btn w-full bg-gradient-to-r from-neon-purple to-neon-pink p-4 md:p-5 rounded-xl text-lg md:text-xl font-display font-bold uppercase tracking-widest shadow-lg hover:shadow-neon-purple/50 active:scale-95 transition-all"
+                    onclick="startGame()">
+                    Iniciar Experiencia
+                </button>
+                <p class="text-center text-[10px] md:text-xs text-on-surface-variant mt-4 opacity-50 uppercase tracking-tighter"
+                    id="setup_hint">3 Buy a Round por persona • 5 puntos para ganar</p>
+            </div>
+        </div>
+    </div>
+    <!-- MAIN GAME SCREEN -->
+    <div class="w-full max-w-4xl z-10 animate-fade-in px-2 hidden-anim" id="game_screen">
+        <div
+            class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 md:mb-8 bg-surface-container-lowest/50 backdrop-blur rounded-2xl px-4 md:px-6 py-3 md:py-4 border border-outline-variant/30">
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start">
+                <span class="text-primary">🎮</span>
+                <span class="font-mono text-sm md:text-lg font-bold" id="turn_display">RONDA 1</span>
+            </div>
+            <div
+                class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 border-outline-variant/20 pt-2 sm:pt-0">
+                <div class="items-center gap-2 hidden sm:flex" id="buy_round_stock_container">
+                    <span class="text-neon-cyan text-base md:text-xl">✨</span>
+                    <span
+                        class="font-mono text-[10px] md:text-xs font-black text-neon-cyan uppercase tracking-wider">Buy
+                        a Round: <span class="text-xs md:text-sm font-bold" id="buy_round_stock">0</span></span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-neon-gold" id="score_icon">🎴</span>
+                    <span class="font-mono text-xs md:text-lg font-bold" id="score_target_display">CARTAS: 0/10</span>
+                </div>
+            </div>
+        </div>
+        <div class="sm:hidden mb-4 bg-surface-container-low/50 rounded-xl p-2 flex justify-center items-center gap-2 border border-neon-cyan/20 hidden-anim"
+            id="mobile_buy_round_indicator">
+            <span class="text-neon-cyan text-sm">✨</span>
+            <span class="font-mono text-[10px] font-black text-neon-cyan uppercase">Buy a Round: <span class=""
+                    id="mobile_buy_round_stock">0</span></span>
+        </div>
+        <div class="text-center mb-6 md:mb-8" id="start_prompt_2p">
+            <p class="text-neon-cyan font-display text-lg md:text-xl font-bold animate-pulse-glow">¡El de mayor edad
+                comienza!</p>
+        </div>
+        <!-- DRAW PHASE -->
+        <div class="space-y-6 md:space-y-10 flex flex-col items-center justify-center" id="draw_phase_zone">
+            <h2 class="text-center text-xl md:text-2xl font-display font-bold text-on-surface" id="draw_instruction">
+                Escoge tu destino...</h2>
+            <div class="selection-zone" id="draw_options_grid">
+                <div class="selection-card glass p-6 md:p-8 rounded-2xl md:rounded-3xl h-48 md:h-64 w-full max-w-[280px] flex flex-col items-center justify-center cursor-pointer border-2 border-transparent animate-draw-card"
+                    id="card_option_0" onclick="selectCard(0)" style="animation-delay: 0.1s">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl md:rounded-3xl pointer-events-none">
+                    </div>
+                    <span
+                        class="px-4 py-1.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider mb-6 shadow-lg shadow-black/20 border border-white/10 text-background"
+                        id="mini_tag_0">On The Rocks</span>
+                    <div class="flex flex-col items-center gap-3">
+                        <span class="material-symbols-outlined text-4xl text-on-surface/20"></span>
+                        <p class="text-on-surface-variant font-mono text-[10px] opacity-60 uppercase tracking-[0.2em]">
+                            Revelar carta</p>
+                    </div>
+                </div>
+                <div class="selection-card glass p-6 md:p-8 rounded-2xl md:rounded-3xl h-48 md:h-64 w-full max-w-[280px] flex flex-col items-center justify-center cursor-pointer border-2 border-transparent animate-draw-card hidden"
+                    id="card_option_1" onclick="selectCard(1)" style="animation-delay: 0.3s">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl md:rounded-3xl pointer-events-none">
+                    </div>
+                    <span
+                        class="px-4 py-1.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider mb-6 shadow-lg shadow-black/20 border border-white/10 text-background"
+                        id="mini_tag_1">Happy Hour</span>
+                    <div class="flex flex-col items-center gap-3">
+                        <span class="material-symbols-outlined text-4xl text-on-surface/20"></span>
+                        <p class="text-on-surface-variant font-mono text-[10px] opacity-60 uppercase tracking-[0.2em]">
+                            Revelar carta</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BOARD PHASE -->
+        <div class="space-y-6 md:space-y-10 screen-transition animate-fade-in hidden-anim" id="board_phase_zone">
+            <div class="card-perspective w-full max-w-[280px] sm:max-w-sm h-[380px] md:h-96 mx-auto cursor-pointer"
+                onclick="flipCard()">
+                <div class="card-inner" id="game_card">
+                    <div class="card-face card-back">
+                        <div
+                            class="w-full h-full border-4 border-double border-white/20 rounded-[20px] flex flex-col items-center justify-center p-4">
+                            <h3
+                                class="text-3xl md:text-4xl font-extrabold uppercase tracking-widest text-primary title-glow text-center font-display">
+                                TRUTH<br />OR<br />DRINK
+                            </h3>
+                            <div
+                                class="mt-4 text-[8px] md:text-[10px] font-mono uppercase tracking-[0.4em] text-on-surface-variant/40">
+                                Toca para revelar
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-face card-front space-y-4 md:space-y-6 text-center" id="card_front_style">
+                        <div class="px-6 py-2 rounded-full text-xs md:text-sm font-black tracking-[0.2em] uppercase mb-2 md:mb-4 bg-white/10 mx-auto w-fit text-center flex items-center justify-center min-w-[140px]"
+                            id="display_type">DUELO</div>
+                        <p class="text-xl md:text-3xl font-display font-semibold leading-tight text-white px-2 md:px-4 overflow-y-auto max-h-[60%] custom-scrollbar text-center"
+                            id="display_question"></p>
+                        <div class="mt-auto">
+                            <span
+                                class="text-[9px] md:text-[10px] font-mono font-black uppercase tracking-[0.3em] opacity-50"
+                                id="display_deck"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 max-w-2xl mx-auto px-4">
+                <button
+                    class="neon-btn col-span-1 md:col-span-2 bg-gradient-to-r from-neon-cyan via-tertiary to-primary p-3 md:p-4 rounded-xl font-black uppercase tracking-widest text-background transition-all hover:scale-[1.02] border-2 border-white/20 shadow-[0_0_20px_rgba(0,245,212,0.3)] text-xs md:text-sm hidden-anim"
+                    id="btn_buy_round_action" onclick="triggerBuyRound()">BUY A ROUND (Power-Up)</button>
+                <button
+                    class="glass p-3 md:p-4 rounded-xl font-semibold text-on-surface hover:bg-white/10 transition-colors flex items-center justify-center gap-2 text-xs md:text-base hidden"
+                    id="btn_rules" onclick="showCurrentRules()">
+                    <span class="text-neon-gold">🏆</span>
+                    Ver Reglas
+                </button>
+                <button
+                    class="bg-neon-purple p-3 md:p-4 rounded-xl font-bold uppercase tracking-widest text-white shadow-lg shadow-neon-purple/20 hover:scale-[1.02] transition-all text-xs md:text-base"
+                    id="btn_next_turn" onclick="finishTurn()">
+                    Siguiente Turno
+                </button>
+            </div>
+        </div>
+        <!-- END STATE SCREEN -->
+        <div class="glass rounded-[1.5rem] md:rounded-[2rem] p-8 md:p-12 text-center space-y-6 md:space-y-8 hidden-anim"
+            id="end_screen">
+            <h2 class="text-3xl md:text-4xl font-display font-extrabold title-glow text-primary">JUEGO TERMINADO</h2>
+            <p class="text-on-surface-variant text-lg md:text-xl">¿Qué sigue para esta noche?</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 pt-4">
+                <button
+                    class="glass p-4 md:p-6 rounded-2xl border-2 border-error/30 text-error font-bold uppercase hover:bg-error/10 transition-all text-sm md:text-base"
+                    onclick="abortGame()">Cerrar la noche</button>
+                <button
+                    class="neon-btn bg-primary p-4 md:p-6 rounded-2xl text-background font-black uppercase tracking-widest text-sm md:text-base"
+                    onclick="location.reload()">Jugar de nuevo</button>
+            </div>
+        </div>
+        <button
+            class="mt-8 md:mt-12 mx-auto block text-error font-semibold opacity-50 hover:opacity-100 transition-opacity text-sm md:text-base"
+            id="abort_btn" onclick="abortGame()" style="display: block;">Finalizar y Volver al Inicio</button>
+    </div>
+    <!-- MODAL -->
+    <div class="fixed inset-0 bg-background/95 backdrop-blur-md flex items-center justify-center z-50 p-4 md:p-6 animate-fade-in hidden-anim"
+        id="rules_modal">
+        <div
+            class="glass max-w-lg w-full rounded-2xl md:rounded-3xl p-6 md:p-8 space-y-4 md:space-y-6 shadow-2xl border-primary/20">
+            <h3 class="text-xl md:text-2xl font-display font-bold text-primary" id="modal_title">Dinámica</h3>
+            <div class="text-on-surface-variant leading-relaxed text-base md:text-lg space-y-4 max-h-[50vh] overflow-y-auto pr-2 custom-scrollbar text-sm md:text-base"
+                id="modal_body"></div>
+            <button
+                class="neon-btn w-full bg-primary p-3 md:p-4 rounded-xl text-background font-bold uppercase tracking-widest text-sm md:text-base"
+                onclick="closeRules()">
+                Entendido
+            </button>
+        </div>
+    </div>
+    <script>
+        const QUESTIONS_DATABASE = {
+            happy: [
+                { type: "STRAIGHT UP", text: "¿Cuál es el cumplido más raro que te han hecho?" },
+                { type: "MAKE IT A DOUBLE", text: "Puedo teletransportarte a cualquier lugar del mundo en el que nunca hayas estado. Tienes 24 horas para visitarlo antes de ser devuelto a casa. ¿A dónde irías?" },
+                { type: "STRAIGHT UP", text: "Describe una forma en la que he impactado tu vida, pero que yo tal vez no sepa." },
+                { type: "MAKE IT A DOUBLE", text: "Me van a hacer un tatuaje permanente en la piel con agujas. Elige un diseño para mí. Puntos extra si lo dibujas tú." },
+                { type: "STRAIGHT UP", text: "Cierra los ojos antes de hacer esta pregunta: ¿De qué color son mis ojos?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es el mayor miedo que has superado?" },
+                { type: "STRAIGHT UP", text: "¡Nos quedamos en casa esta noche! Esta es tu oportunidad de sentarme a ver eso que te mueres porque vea. ¿Qué es y qué snack debería traer?" },
+                { type: "STRAIGHT UP", text: "¿Le has presumido sobre mí a otras personas? ¿Qué les dijiste?" },
+                { type: "THIS ROUND'S ON ME", text: "Si pudieras adquirir instantáneamente cualquier habilidad, ¿cuál sería?" },
+                { type: "STRAIGHT UP", text: "¿Qué me confiarías a mí antes que a nadie más?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál es el apodo más extraño que te han puesto?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál sería tu anécdota cliché de 20 segundos si fueras concursante de un programa de televisión?" },
+                { type: "STRAIGHT UP", text: "¿Qué platillo te queda espectacular cada vez que lo preparas?" },
+                { type: "STRAIGHT UP", text: "¿Qué olor te transporta de inmediato a la infancia?" },
+                { type: "STRAIGHT UP", text: "¿Qué producto descontinuado darías lo que fuera por traer de vuelta?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuándo fue la última vez que te reíste tanto que lloraste?" },
+                { type: "STRAIGHT UP", text: "¿Qué es algo que sabes que lograrás, sin importar cuánta gente te diga que no puedes?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es tu recuerdo más feliz de cuando eras un niño de menos de diez años?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué mal hábito has logrado dejar por completo?" },
+                { type: "STRAIGHT UP", text: "¿Qué es eso que estás deseando que yo logre?" },
+                { type: "STRAIGHT UP", text: "Si yo no alcanzara a rascarme donde me pica, ¿me harías el favor de rascarme?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué hiciste en tu primerísima cita de la vida?" },
+                { type: "STRAIGHT UP", text: "Menciona un sueño tuyo que hayas hecho realidad." },
+                { type: "THIS ROUND'S ON ME", text: "Mira a la persona a tu izquierda. ¿Qué es lo más amable que ha hecho por ti?" },
+                { type: "STRAIGHT UP", text: "¿Qué impacto positivo crees que causas en los demás?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es la música de espera que suena dentro de tu cerebro?" },
+                { type: "MAKE IT A DOUBLE", text: "¿En qué es en lo que más te gusta gastar el dinero tontamente?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué es algo que te cambió por completo cuando lo experimentaste por primera vez?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál es el mejor cumplido que te han hecho en la vida?" },
+                { type: "STRAIGHT UP", text: "Vamos a mandar a hacer casacas iguales para este grupo. ¿Cómo se ven y qué dicen en la espalda?" },
+                { type: "THIS ROUND'S ON ME", text: "¿De qué te sientes orgulloso que no mucha gente sepa?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Sobre qué tema totalmente insignificante podrías escribir una tesis entera?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué álbum has escuchado más veces? Sé honesto. Puedes consultar tus aplicaciones de música para verificarlo." },
+                { type: "STRAIGHT UP", text: "¿Siempre intentas ser honesto conmigo, o me dices mentiras piadosas del nivel de 'ese corte de cabello te queda genial' solo por ser amable?" },
+                { type: "STRAIGHT UP", text: "¿A qué personaje de película o televisión te recuerdo más?" },
+                { type: "THIS ROUND'S ON ME", text: "¿A qué snack recurres en momentos de caos emocional?" },
+                { type: "STRAIGHT UP", text: "Describe una ocasión en la que, de niño, avergonzaste trágicamente a tus padres por accidente." },
+                { type: "STRAIGHT UP", text: "¿Cuál es la mejor respuesta ingeniosa que se te ha ocurrido sobre la marcha?" },
+                { type: "THIS ROUND'S ON ME", text: "Describe tu primer beso real. Ambientanos bien la escena." },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál es el sonido más reconfortante del mundo?" },
+                { type: "STRAIGHT UP", text: "¿Has estado enamorado alguna vez? ¿Cómo lo sabes?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es el regalo más considerado que has recibido? ¿Cómo reaccionaste al recibirlo?" },
+                { type: "MAKE IT A DOUBLE", text: "Cuéntame tu chiste favorito. Si me río, yo tomo." },
+                { type: "MAKE IT A DOUBLE", text: "¿Tiene tu ciudad natal algún lugar famoso por ser aterrador? Un granero embrujado, un hospital abandonado..." },
+                { type: "STRAIGHT UP", text: "¿Qué es algo con lo que crees que me siento inseguro, pero de lo que piensas que debería dejar de estresarme?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es la ocasión en la que mejor la has pasado con desconocidos? Cuéntanos la historia." },
+                { type: "STRAIGHT UP", text: "¿Crees que eres más feliz —o más triste— que el promedio de las personas? ¿Por qué?" },
+                { type: "STRAIGHT UP", text: "Si yo fuera un perfume o colonia, ¿cuáles serían mis notas de salida, de corazón y de fondo?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué título de película describe tu última relación?" },
+                { type: "STRAIGHT UP", text: "¿Qué frase de película o serie te llega a tocar demasiado de cerca?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué canción te garantiza tocarte el corazón por completo, sin importar la hora o el lugar?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es algo que crees que la gente debería valorar más de ti?" },
+                { type: "STRAIGHT UP", text: "Si pudieras planear la noche perfecta con todos tus amigos, ¿qué incluiría?" },
+                { type: "STRAIGHT UP", text: "Aparte de 'húmedo', ¿el sonido de qué palabra no soportas?" },
+                { type: "STRAIGHT UP", text: "Si te ofreciera $4,300 por llamar a mi padres todos los domingos durante un año para ponerlos al día sobre mi vida, ¿lo harías?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Tienes alguna cicatriz que nos quieras mostrar? Elige una y cuéntanos la historia de cómo te la hiciste." },
+                { type: "STRAIGHT UP", text: "De los presentes aquí, ¿a quién le hacen falta unas palabras amables? Ofrezcamos buenas vibras ahora mismo." },
+                { type: "STRAIGHT UP", text: "Si no hubiera barreras de entrada, ¿en qué trabajo crees que serías increíble?" },
+                { type: "MAKE IT A DOUBLE", text: "Cuéntanos sobre una elección de estilo de tu pasado que te alegra que se haya quedado en el pasado." },
+                { type: "STRAIGHT UP", text: "¿Cuál es la forma más rara en la que has ganado dinero? ¿Cuánto te pagaron?" },
+                { type: "THIS ROUND'S ON ME", text: "Si pudieras vivir la vida de cualquier otra persona, ¿la de quién sería?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez te han pagado una cantidad exageradamente alta por algo? ¿Quién te pagó y por qué era tan valioso para ellos?" },
+                { type: "STRAIGHT UP", text: "¿Qué canción te recuerda a mí cada vez que la escuchas?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es lo que te hace ser alguien tan divertido?" },
+                { type: "STRAIGHT UP", text: "¿En qué juego de mesa estás completamente seguro de que podrías destruirnos a todos?" },
+                { type: "STRAIGHT UP", text: "¿Cómo se ve tu domingo ideal absoluto?" },
+                { type: "STRAIGHT UP", text: "¿Qué es algo saludable que haces y que la mayoría de los demás probablemente no? Seguro que hay algo." },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es lo más común por lo que la gente te halaga o elogia?" },
+                { type: "STRAIGHT UP", text: "¿Cuál ha sido el momento en el que te has sentido más imponente o genial?" },
+                { type: "STRAIGHT UP", text: "¿La obra de qué autor significó más para ti cuando eras más joven? ¿Sigue significando lo mismo?" },
+                { type: "MAKE IT A DOUBLE", text: "Si fueras un Cariñosito (Care Bear), ¿qué tendrías dibujado en la barriga?" },
+                { type: "STRAIGHT UP", text: "Si se supone que los perros y sus dueños tienen personalidades similares, ¿qué raza de perro debería tener yo?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué crees que es mejor la segunda vez? ¿El cover de una canción, las sobras de comida recalentada...?" },
+                { type: "STRAIGHT UP", text: "Dime un dato que creas que no sé. Si lo sé, tienes que tomar." },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál es el título de tu autobiografía? Puntos extra imaginarios si incluye dos puntos y un subtítulo." },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué es algo que hayas hecho solo para intentar verte genial? ¿Impresionaste a alguien?" },
+                { type: "STRAIGHT UP", text: "¿Me confiarías perforarte la oreja, al estilo de una pijamada de los años 80?" },
+                { type: "STRAIGHT UP", text: "Si voláramos a alguna parte juntos, ¿quién se ofrecería como voluntario para sentarse en el asiento del medio?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué canción te da más vergüenza admitir que te encanta? Responde cantando." },
+                { type: "STRAIGHT UP", text: "Si alguien me hiciera daño, tú: a) me consolarías, b) me distraerías, o c) te vengarías por mí." },
+                { type: "MAKE IT A DOUBLE", text: "Describe un acto de protesta sutil o insignificante que hayas llevado a cabo en el trabajo o en la universidad." },
+                { type: "STRAIGHT UP", text: "¿Qué situación siempre mejora con mi presencia?" },
+                { type: "STRAIGHT UP", text: "¿Qué lema pondrías en tu escudo familiar?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es el mayor riesgo de moda que has tomado como adulto? ¿Qué tan genial te sentiste?" },
+                { type: "STRAIGHT UP", text: "¿Qué talento oculto sospechas que tengo? ¿Qué te hace pensar eso?" },
+                { type: "STRAIGHT UP", text: "¿Qué olor te resulta el más nostálgico?" },
+                { type: "STRAIGHT UP", text: "¿Con qué tipo de persona siempre has querido salir, pero nunca has tenido la oportunidad?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál ha sido la peor cita en la que has estado? Cuéntanos todos los detalles jugosos." },
+                { type: "STRAIGHT UP", text: "¿Qué es algo que todo el mundo decía que te arrepentirías de hacer, pero no fue así?" },
+                { type: "STRAIGHT UP", text: "¿Cómo te describiría tu 'yo' de la infancia si te viera ahora? ¿Le agradarías a ese niño?" },
+                { type: "STRAIGHT UP", text: "De todos nosotros, ¿a través de los ojos de quién te gustaría ver el mundo por un día?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué pensaste que odiarías, pero terminaste amando por completo?" },
+                { type: "STRAIGHT UP", text: "Completa el espacio en blanco: No me importa si ___ es para niños, lo seguiré amando hasta el día en que me muera. Defiende tu postura." },
+                { type: "THIS ROUND'S ON ME", text: "Cuéntanos sobre ese amor que dejamos ir (el que se escapó)." },
+                { type: "STRAIGHT UP", text: "¿Qué es lo más valiente que has hecho en la vida?" },
+                { type: "STRAIGHT UP", text: "¿De cuántos segundos es el abrazo ideal? ¿Deberíamos probar todos tu hipótesis?" },
+                { type: "MAKE IT A DOUBLE", text: "Hazme un cumplido sincero y específico." },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál es la primera aplicación que abres cuando te despiertas por la mañana?" },
+                { type: "STRAIGHT UP", text: "¿Qué te causa ansiedad en este momento? ¿Podemos hacer algo para tranquilizarte?" }
+            ],
+            rocks: [
+                { type: "STRAIGHT UP", text: "¿Seremos amigos en diez años?" },
+                { type: "STRAIGHT UP", text: "¿De qué demonio personal estás en negación?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es algo con lo que crees que yo me salgo con la mía, pero con lo que tú nunca podrías?" },
+                { type: "STRAIGHT UP", text: "¿Qué es algo que te gusta de mí que otras personas simplemente no valoran?" },
+                { type: "STRAIGHT UP", text: "Cuéntanos sobre alguna ocasión en la que desataste un problema y dejaste que los demás lidiaran con las consecuencias." },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué es algo que siempre has hecho y de lo que recién te diste cuenta de adulto que era raro?" },
+                { type: "STRAIGHT UP", text: "Si tuvieras que comer una parte apetecible de mi delicioso cuerpo, ¿qué parte elegirías?" },
+                { type: "STRAIGHT UP", text: "¿Cuándo fue la última vez que perdiste los papeles? ¿Qué pasó? ¿Cómo te sientes al respecto ahora?" },
+                { type: "MAKE IT A DOUBLE", text: "Descríbeme en tres palabras de un idioma que no hables bien." },
+                { type: "STRAIGHT UP", text: "¿Cuál es el gesto más grande que has intentado para salvar o reparar una relación?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Alguna vez te han despedido? Si es así, ¿por qué? Si no, ¿por qué no?" },
+                { type: "STRAIGHT UP", text: "Nuestras mentes han intercambiado cuerpos. ¿Qué es lo primero que vas a hacer en mi cuerpo?" },
+                { type: "STRAIGHT UP", text: "¿Qué es algo que ahora entiendes sobre tus padres ahora que eres mayor? ¿Saben ellos que lo sabes?" },
+                { type: "MAKE IT A DOUBLE", text: "Describe un momento en el que realmente pensaste que podías morir." },
+                { type: "STRAIGHT UP", text: "¿Alguna vez le has hecho 'ghosting' a alguien cercano?" },
+                { type: "STRAIGHT UP", text: "Cuéntanos qué te hubiera gustado decir durante tu última ruptura, pero no dijiste." },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué aspecto de tu higiene personal podrías cuidar con más rigurosidad?" },
+                { type: "THIS ROUND'S ON ME", text: "Cuéntanos qué haces para fastidiar a tu pareja a propósito." },
+                { type: "STRAIGHT UP", text: "¿Cuál es un lugar donde te sientes como en casa pero en el que yo no encajaría en absoluto?" },
+                { type: "MAKE IT A DOUBLE", text: "Cuéntanos sobre alguna vez que terminaste más ebrio de lo recomendable." },
+                { type: "STRAIGHT UP", text: "¿Cuál es tu peor mecanismo de afrontamiento o de defensa?" },
+                { type: "STRAIGHT UP", text: "Asumiendo que estuvieras soltero, ¿qué haría falta para que regresaras con tu último ex?" },
+                { type: "MAKE IT A DOUBLE", text: "Haz tu mejor (o peor) imitación de mí. Prometo aplaudir con ganas." },
+                { type: "STRAIGHT UP", text: "¿Te has roto algún hueso? ¿Qué pasó? ¿Escuchaste el crujido?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es algo que haces y te preguntas si los demás también lo hacen, pero no lo sabes con certeza?" },
+                { type: "MAKE IT A DOUBLE", text: "Escríbeme una nueva biografía para una aplicación de citas en tres frases o menos." },
+                { type: "STRAIGHT UP", text: "Me llega una alerta de noticias que instantáneamente me hace extremadamente feliz, pero a nadie más aquí le importa. ¿Cuál es la noticia?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál es mi mejor atributo físico? No seas tímido." },
+                { type: "STRAIGHT UP", text: "Si pudiera ayudarte con una tarea desagradable, ¿cuál sería? ¿Qué me hace la opción correcta para el trabajo?" },
+                { type: "STRAIGHT UP", text: "Cuéntame sobre un desacuerdo que hayamos tenido y cómo lo resolvimos. ¿Nos ha hecho más fuertes?" },
+                { type: "STRAIGHT UP", text: "Cuéntanos sobre alguna vez que me hayas visto mentirle a otra persona. ¿Fue lo correcto?" },
+                { type: "STRAIGHT UP", text: "Vamos a iniciar un negocio. ¿En qué emprendimiento tendríamos más éxito como pareja?" },
+                { type: "THIS ROUND'S ON ME", text: "Describe la última vez que perdiste por completo el control." },
+                { type: "STRAIGHT UP", text: "¿Has salido alguna vez con el ex de un amigo? ¿Alguna vez has querido hacerlo?" },
+                { type: "MAKE IT A DOUBLE", text: "Describe tu peor desastre relacionado con el baño." },
+                { type: "STRAIGHT UP", text: "¿Qué me has pedido prestado y aún no me has devuelto? ¿Me lo puedes devolver ahora mismo?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has compartido una información de la que te diste cuenta demasiado tarde que probablemente debía ser un secreto?" },
+                { type: "THIS ROUND'S ON ME", text: "Cuéntanos sobre alguna vez que te hayan rechazado románticamente." },
+                { type: "STRAIGHT UP", text: "De todas las cosas que hacemos juntos, ¿qué es lo mejor que hacemos juntos?" },
+                { type: "MAKE IT A DOUBLE", text: "¡No sé cómo me soportas! ¿Por qué me tienes cerca?" },
+                { type: "STRAIGHT UP", text: "¿Qué te he arruinado?" },
+                { type: "STRAIGHT UP", text: "¿Por hacer qué cosa te metiste en graves problemas de niño, y aprendiste la lección?" },
+                { type: "MAKE IT A DOUBLE", text: "Menciona una ocasión en la que pudiste haber ayudado a alguien, pero no te molestaste en hacerlo." },
+                { type: "STRAIGHT UP", text: "¿Qué es lo peor que has tenido que hacer en el trabajo o en la universidad? ¿Cómo lo manejaste?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez te has quedado sentado mirando cómo yo hacía algo incorrectamente con total confianza?" },
+                { type: "STRAIGHT UP", text: "¿Qué es algo que hiciste gratis como un favor y que, en retrospectiva, realmente desearías haber cobrado?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez te ríes de mis chistes por pena, incluso si no te parecen graciosos?" },
+                { type: "STRAIGHT UP", text: "Si pudieras tener cualquier parte de mi cuerpo (por razones estéticas, no médicas), ¿cuál sería?" },
+                { type: "STRAIGHT UP", text: "¿Irías a ver en concierto a una banda que odias solo por hacerme feliz? ¿Lo has hecho?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuáles son tus vicios? ¿Han mejorado o empeorado con el tiempo?" },
+                { type: "STRAIGHT UP", text: "¿A qué interés has renunciado debido a una comunidad de la que no querías formar parte?" },
+                { type: "STRAIGHT UP", text: "Cuéntanos sobre alguna vez que hayas rechazado a alguien románticamente." },
+                { type: "STRAIGHT UP", text: "Si yo estuviera en una relación con alguien que odias, ¿me lo dirías?" },
+                { type: "STRAIGHT UP", text: "¿Crees que soy capaz de hacer algo que nunca podrías perdonarme?" },
+                { type: "STRAIGHT UP", text: "La ciencia ha avanzado y ahora tú y yo estamos criando juntos a nuestro hijo de cinco años. ¿Cómo lo estamos haciendo? ¿Cómo es el niño?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué elemento de la cultura pop te hace sospechar de cualquiera que sea fanático de él?" },
+                { type: "STRAIGHT UP", text: "Si yo matara a alguien, ¿bajo qué circunstancias me ayudarías a encubrirlo?" },
+                { type: "STRAIGHT UP", text: "Alguien que nunca me ha conocido te pregunta cómo soy. ¿Cómo respondes?" },
+                { type: "STRAIGHT UP", text: "Si nos conociéramos por primera vez hoy, ¿nos haríamos amigos?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Alguna vez has robado algo? ¿Qué y por qué? ¿Todavía lo tienes?" },
+                { type: "STRAIGHT UP", text: "¿Tu ego se ha interpuesto alguna vez a la hora de pedir disculpas o arreglar una pelea? ¿Lo resolviste alguna vez?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál fue tu momento más vergonzoso que ocurrió en público? ¡Revivámoslo todos!" },
+                { type: "STRAIGHT UP", text: "¿Cuál es tu recuerdo favorito de nuestra relación?" },
+                { type: "STRAIGHT UP", text: "¿Qué es (o sería) lo peor de tenerme como compañero de viaje?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué comentario que alguien hizo sobre ti se te quedó grabado en la mente y alteró para siempre tu comportamiento?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué es algo que evitas porque temes que te guste demasiado?" },
+                { type: "STRAIGHT UP", text: "¿Crees que eres más o menos atractivo que el promedio de las personas? ¿Por qué?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál ha sido tu error más costoso?" },
+                { type: "STRAIGHT UP", text: "Estamos haciendo un viaje por carretera en medio de la nada. ¿Me dejas conducir o navegar?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has hecho algo con el objetivo específico de impresionarme a mí?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál es la mentira más grande que has inventado para cancelar planes?" },
+                { type: "STRAIGHT UP", text: "¿Por qué no funcionaríamos románticamente?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué falta has cometido que podría hacer que te despidan del trabajo?" },
+                { type: "STRAIGHT UP", text: "Describe a mi pareja ideal. ¿He estado en el camino correcto para encontrar a esta persona?" },
+                { type: "STRAIGHT UP", text: "¿Quién de nosotros crees que ha cometido más delitos?" },
+                { type: "MAKE IT A DOUBLE", text: "Describe la primera vez que nos conocimos. ¿Cuál fue tu primera impresión sincera de mí?" },
+                { type: "STRAIGHT UP", text: "Si te pusiera como referencia laboral, ¿qué dirías de mí? ¿Sería todo verdad?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué es lo que has aprendido de mí?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cómo sería tu vida peor si nunca nos hubiéramos conocido?" },
+                { type: "STRAIGHT UP", text: "¿Cuánto tiempo te tomó superar a tu último ex? ¿Qué hiciste para superarlo? ¿Realmente lo has superado?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez me has dejado ganar a propósito?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué hábito, compulsión o relación desearías poder dejar?" },
+                { type: "STRAIGHT UP", text: "¿De qué cosa me convenciste de no hacer, y fue la decisión correcta?" },
+                { type: "STRAIGHT UP", text: "¿Quién es la persona más inteligente aquí? Defiende tu postura." },
+                { type: "STRAIGHT UP", text: "¿Cuándo fue la última vez que lloraste? ¿Qué pasó?" },
+                { type: "MAKE IT A DOUBLE", text: "¿En qué desearías ser tan bueno como yo?" },
+                { type: "STRAIGHT UP", text: "Tú y yo estamos saliendo. ¿Por qué razón vamos a terminar?" },
+                { type: "STRAIGHT UP", text: "¿Fue tu infancia más feliz que la de la persona promedio?" },
+                { type: "STRAIGHT UP", text: "¿De qué te sientes inseguro? ¿Estás trabajando en ello?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Te ha bloqueado alguna celebridad en las redes sociales? ¡Cuéntanos la historia!" },
+                { type: "MAKE IT A DOUBLE", text: "Toda amistad implica dar y recibir. ¿Cuál de los dos soy yo?" },
+                { type: "STRAIGHT UP", text: "Si no tuviera mi trabajo actual, ¿a qué me verías dedicándome?" },
+                { type: "STRAIGHT UP", text: "Si alguien importante para ti te dijera que dejaría de verte a menos que dejaras de verme a mí, ¿lo harías?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es el período de tiempo más largo que podrías compartir una habitación de hotel conmigo antes de no querer volver a verme nunca más?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez me has visto librarme de un problema usando mi encanto?" },
+                { type: "THIS ROUND'S ON ME", text: "Cuéntanos sobre un secreto que tuviste que ocultar a tus seres queridos." },
+                { type: "STRAIGHT UP", text: "¿Para qué cosa nunca me contratarías?" },
+                { type: "STRAIGHT UP", text: "Describe una ocasión en la que realmente decepcionaste a alguien. ¿Lograste recuperar su confianza alguna vez?" },
+                { type: "MAKE IT A DOUBLE", text: "Si yo fuera una cadena de restaurantes, ¿cuál sería y por qué?" }
+            ],
+            last: [
+                { type: "STRAIGHT UP", text: "¿Qué problema creo que estoy ocultando con éxito a todo el mundo, pero que en realidad es completamente obvio?" },
+                { type: "MAKE IT A DOUBLE", text: "Cuéntanos sobre algún vacío legal que hayas aprovechado hasta que te atraparon." },
+                { type: "STRAIGHT UP", text: "¿Cuántos hijos ya son demasiados hijos? ¿Cuántos vas a tener tú?" },
+                { type: "STRAIGHT UP", text: "¿A qué animal me parezco más? Describe en qué se parecen esta especie y yo." },
+                { type: "STRAIGHT UP", text: "¿Qué tan cómodos nos sentimos el uno con el otro? Danos un ejemplo." },
+                { type: "THIS ROUND'S ON ME", text: "¿Existe alguna norma social aparentemente normal que nunca, jamás, hayas seguido?" },
+                { type: "STRAIGHT UP", text: "Si alguien estuviera interesado en salir conmigo, ¿qué historia le contarías para ver si puede lidiar conmigo?" },
+                { type: "STRAIGHT UP", text: "Si nos estuviéramos muriendo de sed, ¿cómo racionaríamos la última botella de agua entre todos los que estamos aquí?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué es lo más mezquino o cruel que me has visto hacer?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has fingido ser otra persona en internet? ¿Quién es este alter ego y alguna vez te descubrieron?" },
+                { type: "STRAIGHT UP", text: "¿Soy tu tipo? ¿Qué tendría que hacer para volverme más tu tipo? No estoy coqueteando contigo, solo estamos hablando." },
+                { type: "STRAIGHT UP", text: "¿Con qué estás lidiando o luchando actualmente que nosotros no sepamos?" },
+                { type: "STRAIGHT UP", text: "¿En qué creo que soy genial, pero en realidad soy completamente promedio?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es lo más terrible que has hecho por dinero?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has estafado intencionalmente a alguien o lo has engañado para tu beneficio personal?" },
+                { type: "STRAIGHT UP", text: "¿Con qué soy tan terco que me está haciendo la vida miserable?" },
+                { type: "MAKE IT A DOUBLE", text: "Tu historial de Google se ha hecho público. ¿Qué búsqueda es la más difícil de explicar?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has hablado de mí a mis espaldas? Si es así, ¿qué dijiste?" },
+                { type: "STRAIGHT UP", text: "Menciona una ocasión en la que desearías haber podido ayudarme. ¿Qué habrías hecho?" },
+                { type: "STRAIGHT UP", text: "Cuéntanos sobre alguna vez que hiciste algo deliberadamente para provocar a tu pareja." },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué consejo necesito pero no quiero escuchar?" },
+                { type: "STRAIGHT UP", text: "¿Hay ciertas situaciones conmigo que evitas a propósito?" },
+                { type: "STRAIGHT UP", text: "¿Cuándo fue la última vez que me mentiste? ¿Cuál fue la mentira?" },
+                { type: "STRAIGHT UP", text: "¿Le parecería atractivo mi 'yo' adulto a tu 'yo' adolescente?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es lo más egoísta que has hecho en tu vida?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has tenido un susto de embarazo?" },
+                { type: "STRAIGHT UP", text: "Menciona a un amigo mío del que no seas el mayor fanático. ¿Hay algo que creas que debería reconsiderar sobre él?" },
+                { type: "STRAIGHT UP", text: "¿Cuándo es cuando exijo la mayor atención?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál ha sido tu mejor momento poniendo a alguien en su lugar? ¿Puedes recrearlo para nosotros?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has tenido que disculparte con alguien por mi comportamiento? ¿Aceptó la persona la disculpa?" },
+                { type: "STRAIGHT UP", text: "Describe un momento en el que perdiste un poco el respeto por mí." },
+                { type: "STRAIGHT UP", text: "¿Qué dato sobre ti parece que nunca puedo recordar?" },
+                { type: "STRAIGHT UP", text: "¿Qué es algo que definitivamente no es mi problema, pero que de alguna manera siempre se convierte en mi problema?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez he hecho algo que creas que debería haber hecho que me botaran de patitas a la calle?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Te has hecho la pichi o el baño encima alguna vez siendo adulto?" },
+                { type: "STRAIGHT UP", text: "¿Qué es lo más molesto que has estado conmigo? ¿Qué lo resolvió?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué es algo que estás haciendo actualmente y que dejarás de hacer si y solo si te descubren?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez me has tenido miedo genuino?" },
+                { type: "STRAIGHT UP", text: "¿Con qué cosa nunca, jamás, querrías mi ayuda?" },
+                { type: "STRAIGHT UP", text: "Si nos volviéramos a encontrar después de no vernos durante cinco años, ¿qué sería lo primero que haríamos juntos?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál es la razón más superficial por la que le has dado 'swipe left' (rechazar) a un perfil de citas?" },
+                { type: "STRAIGHT UP", text: "¿Qué mal hábito adquiriste de mí?" },
+                { type: "STRAIGHT UP", text: "¿Qué tal es mi consumo de drogas y alcohol? ¿Crees que me vendría bien consumir más, o menos?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es lo que nunca entenderás de mí?" },
+                { type: "STRAIGHT UP", text: "¿Qué aprendiste al ver a otra persona fracasar estrepitosamente?" },
+                { type: "STRAIGHT UP", text: "¿Qué es lo más molesto que hago sin darme cuenta?" },
+                { type: "STRAIGHT UP", text: "Si te enteraras de que he estado malversando fondos en el trabajo, ¿me delatarías?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has apuñalado a alguien por la espalda o has conspirado activamente en su contra?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es lo más raro de mí?" },
+                { type: "STRAIGHT UP", text: "¿Qué ha sido lo más cerca que hemos estado de separarnos para siempre? ¿Arreglamos el problema o estamos en negación?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué es algo que sabes que te haría una mejor persona, pero que simplemente no quieres hacer?" },
+                { type: "STRAIGHT UP", text: "¿Crees que me importa más o menos mi reputación que a la mayoría de la gente? ¿Cuál es tu evidencia?" },
+                { type: "STRAIGHT UP", text: "Califica mi outfit actual del 1 al 10. ¿Es mejor o peor de lo que suelo lucir? Menciona una ocasión en la que desearías haber podido ayudarme. ¿Qué habrías hecho?" },
+                { type: "STRAIGHT UP", text: "¿Qué porcentaje del tiempo crees que hablo puras mentiras o tonterías?" },
+                { type: "MAKE IT A DOUBLE", text: "Si fueras a matarme, ¿cómo lo harías?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez me has atrapado en una mentira? ¿Me confrontaste al respecto? ¿Por qué sí o por qué no?" },
+                { type: "STRAIGHT UP", text: "¿Qué es lo más antihigiénico que me has visto hacer?" },
+                { type: "STRAIGHT UP", text: "¿A alguno de tus amigos no le caigo bien?" },
+                { type: "STRAIGHT UP", text: "¿Dónde estamos y qué estamos haciendo dentro de diez años? ¿Seguimos con nuestras mismas tonterías?" },
+                { type: "THIS ROUND'S ON ME", text: "¿De qué manera has deshonrado a tus padres?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez te has sentido atraído por alguien únicamente porque pensaste que esa persona podría estar interesada en ti?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué es algo que hago que tú odias?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es lo más irracional por lo que has perdido los papeles por completo?" },
+                { type: "STRAIGHT UP", text: "¿Qué crees que necesito simplemente soltar o superar? ¿Cómo mejoraría mi vida si lo hiciera?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es la mentira más atroz que me has dicho?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál es un problema que dejaste pasar por demasiado tiempo antes de abordarlo?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has cancelado planes conmigo para estar con otra persona?" },
+                { type: "STRAIGHT UP", text: "¿De qué manera desearías que me cuidara mejor? ¿Crees que alguna vez lo haré?" },
+                { type: "STRAIGHT UP", text: "¿Me consideras alguien que presume conocer a gente importante? ¿Cuál fue el último nombre que me escuchaste soltar?" },
+                { type: "MAKE IT A DOUBLE", text: "Si muriera mañana, ¿qué arrepentimientos tendrías sobre nuestra relación?" },
+                { type: "STRAIGHT UP", text: "¿De qué cosa hablo tanto que ya no necesitas volver a escuchar al respecto? El tema ha sido suficientemente cubierto." },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué límites éticos estás dispuesto a cruzar felizmente?" },
+                { type: "STRAIGHT UP", text: "¿Hay algo de lo que sea difícil hablar entre cualquiera de los presentes? ¿Deberíamos aclarar las cosas ahora mismo?" },
+                { type: "STRAIGHT UP", text: "De las personas aquí presentes, ¿el trabajo de quién crees que paga más? ¿Crees que esa persona debería yapear o transferir veinte dólares a cada uno de nosotros?" },
+                { type: "STRAIGHT UP", text: "¿Tienes algún secreto que me ocultes a mí y solo a mí?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué ha sido lo más vergonzoso que le has tenido que preguntar a Google?" },
+                { type: "STRAIGHT UP", text: "¿Qué es lo más cruel que me has escuchado decir sobre otra persona?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál es la mentira más grande que has puesto en un currículum? ¿O que has visto en el de otra persona?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Con qué cosa crees que la gente nunca debería bromear?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es la diferencia más fundamental entre nosotros? ¿Deberíamos intentar resolverla o celebrarla?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Alguna vez has hecho algo de lo que no te sientas orgulloso por dinero? (Fuera de un trabajo oficial)." },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué es algo que extrañas de tu último ex serio?" },
+                { type: "STRAIGHT UP", text: "¿Crees que tengo una personalidad más dominante o más sumisa? ¿Tienes algún ejemplo?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué has hecho estando ebrio que no volverías a hacer?" },
+                { type: "STRAIGHT UP", text: "¿Qué es algo sobre mí que podría parecer extraño o perturbador para los demás? ¿Debería bajarle la intensidad?" },
+                { type: "STRAIGHT UP", text: "¿Crees que he logrado más de lo esperado o menos de lo esperado?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál es una opinión impopular de la que nunca te vas a desprender?" },
+                { type: "STRAIGHT UP", text: "¿Con qué soy demasiado exigente o quisquilloso?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué cosa que yo amo tú la odias por completo?" },
+                { type: "STRAIGHT UP", text: "¿Suelo ser demasiado blando con la gente o demasiado severo?" },
+                { type: "STRAIGHT UP", text: "¿Crees que alguna vez provoco drama solo porque lo disfruto? Menciona un ejemplo." },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué título de álbum describe nuestra relación?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál es el delito más grave que hás cometido?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es la advertencia o aclaración que le das a la gente antes de que me conozcan?" },
+                { type: "STRAIGHT UP", text: "¿Soy más una fuerza imparable o un objeto inamovible?" },
+                { type: "STRAIGHT UP", text: "¿Quién aquí es más probable que crea en cosas sobrenaturales, ocultas o místicas?" },
+                { type: "MAKE IT A DOUBLE", text: "Si sospecharas que he sido reemplazado por un duplicado o impostor, ¿qué pregunta me harías para probar mi identidad?" },
+                { type: "STRAIGHT UP", text: "¿En qué cosa tenemos gustos tan diferentes que si a mí me gusta, tú ya sabes que lo vas a odiar?" }
+            ],
+            dirty: [
+                { type: "STRAIGHT UP", text: "¿Cuál es el descubrimiento más sorprendente que has hecho sobre tu propio cuerpo?" },
+                { type: "MAKE IT A DOUBLE", text: "Puedes enviar un mensaje al pasado a tu 'yo' adolescente sobre el sexo. ¿Qué consejo le darías?" },
+                { type: "STRAIGHT UP", text: "¿Besas bien? ¿Cómo lo sabes?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has tenido que contactar a parejas del pasado por... razones de salud pública?" },
+                { type: "THIS ROUND'S ON ME", text: "Describe tus pezones lo más vívidamente posible. Usa una comparación de tamaño. ¿Monedas de diez céntimos o platos de cena?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál es la habilidad sexual de la que estás más orgulloso?" },
+                { type: "STRAIGHT UP", text: "¿Qué cosa sexual intentaste de buena fe, pero simplemente no te pudo gustar?" },
+                { type: "STRAIGHT UP", text: "¿Tienes algo de pornografía realmente descargada y guardada en tu teléfono? ¿Para qué emergencia te estás preparando?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has tenido relaciones sexuales con alguien que ya estaba en una relación seria?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Alguna vez has entrado por accidente y visto a tus padres haciendo esa cosa que hacen los adultos cuando se quieren mucho?" },
+                { type: "MAKE IT A DOUBLE", text: "Danos un ejemplo apasionado de tus frases eróticas o 'dirty talk'." },
+                { type: "STRAIGHT UP", text: "¿Cuál es la pornografía más rara en la que has hecho clic? ¿La viste completa o solo lo suficiente?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuándo fue la última vez que te masturbaste? ¿Fuiste un buen amante contigo mismo? ¿Alguna anotación para la próxima vez?" },
+                { type: "STRAIGHT UP", text: "¿Te ves comprometiéndote con una sola pareja sexual por el resto de tu vida?" },
+                { type: "STRAIGHT UP", text: "Si tú y yo estuviéramos en una película porno juntos, ¿cuál sería su título engañoso o 'clickbait'? ¿Cumpliría con esa promesa?" },
+                { type: "STRAIGHT UP", text: "Cuéntanos sobre un sueño sexual incómodo o inesperado que hayas tenido. ¿Había alguien aquí involucrado?" },
+                { type: "MAKE IT A DOUBLE", text: "Desnudez involuntaria. Cuéntanos cuándo te pasó a ti." },
+                { type: "STRAIGHT UP", text: "¿Quién ha tenido más sexo, tú o tus padres?" },
+                { type: "STRAIGHT UP", text: "Cuéntanos sobre la primera vez que viste pornografía. ¿La buscaste o simplemente te topaste con ella?" },
+                { type: "THIS ROUND'S ON ME", text: "Describe uno de los orgasmos más maravillosos y memorables que hayas tenido. ¿Cuáles eran las condiciones?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez le has escrito al DM a alguien para coquetear? ¿Alguna técnica que quieras compartir?" },
+                { type: "STRAIGHT UP", text: "¿Te parezco físicamente atractivo? ¿Y si parpadeo así con las pestañas?" },
+                { type: "STRAIGHT UP", text: "¿Cuánto dinero tendría que pagarnos un multimillonario voyerista para que tengamos sexo para su entretenimiento?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál es el lugar más extraño en el que has tenido relaciones sexuales?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez lo has hecho en un lugar público?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Quién crees que ha tenido más parejas sexuales, tú o yo?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has temido por tu vida o seguridad mientras bebías o estabas bajo los efectos de drogas? Llévanos a la escena." },
+                { type: "STRAIGHT UP", text: "Describe los juegos previos perfectos: qué actividades y durante cuánto tiempo." },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál es el número máximo de personas con las que te interesaría tener sexo a la vez?" },
+                { type: "STRAIGHT UP", text: "¿Eres más experimental en el sexo, o menos, que la persona promedio?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué haría falta para que tengamos sexo, aquí mismo, ahora mismo? ¿Con todos mirando?" },
+                { type: "STRAIGHT UP", text: "¿Cuáles son (o serían) tus reglas básicas para una relación abierta?" },
+                { type: "STRAIGHT UP", text: "¿Qué tan seguro estás de tu orientación sexual? ¿Alguna vez has experimentado fuera de ella?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Alguna vez has tenido una aventura de una noche? ¿Sabías su apellido?" },
+                { type: "STRAIGHT UP", text: "¿Cuál es el rasgo anatómico por el que más te elogian (según tus amantes)?" },
+                { type: "STRAIGHT UP", text: "Si puedes abstenerte del sexo y la masturbación durante un año completo, ganarás $27,000 y un buen auto usado. ¿Lo lograrías?" },
+                { type: "STRAIGHT UP", text: "¿Cómo te hablaron tus padres sobre el sexo? ¿Aprendiste más de ellos o en otro lugar?" },
+                { type: "MAKE IT A DOUBLE", text: "Comida y sexo. Cuéntanos sobre una experiencia que involucre ambas cosas." },
+                { type: "STRAIGHT UP", text: "Haz una lista de todas las drogas ilícitas que has probado. ¿Cuáles otras te gustaría probar?" },
+                { type: "STRAIGHT UP", text: "¡Estamos haciendo un porno todos juntos! ¿Quién de nosotros protagoniza, quién escribe, quién dirige...? Asigna trabajos a todos aquí." },
+                { type: "STRAIGHT UP", text: "¿Alguna vez le has sido infiel a alguien? ¿Cuáles fueron las circunstancias?" },
+                { type: "THIS ROUND'S ON ME", text: "El sexo anal. ¿Lo has hecho o te lo han hecho? Cuéntanoslo todo." },
+                { type: "STRAIGHT UP", text: "¿Necesitas una conexión emocional para tener un gran sexo? Si has tenido un encuentro espectacular que fue puramente físico, cuéntanos." },
+                { type: "THIS ROUND'S ON ME", text: "Asumiendo que ambos estuviéramos solteros, ¿tendrías un encuentro casual conmigo? ¿Qué tan desesperado tendrías que estar?" },
+                { type: "STRAIGHT UP", text: "Cuéntanos sobre alguna vez en la que una pareja romántica simplemente no entendía cómo hacer cierta cosa en el sexo." },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál es el mejor cumplido que has recibido sobre tu desempeño sexual?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Con cuántas personas te has acostado a través de aplicaciones de citas?" },
+                { type: "STRAIGHT UP", text: "Si un estudio fuera a hacer una película porno específicamente para ti, adaptada a tus gustos particulares, ¿cómo sería?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Qué cosa sexual nunca has podido probar, pero desearías poder hacerlo?" },
+                { type: "STRAIGHT UP", text: "Si tu vida sexual fuera un gráfico circular o de pastel, ¿qué parte sería: satisfactoria, insatisfactoria y alucinante?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has pagado por pornografía? Si no, ¿cuánto le debes a la industria del porno?" },
+                { type: "THIS ROUND'S ON ME", text: "Describe el estado actual de tu vello púbico." },
+                { type: "STRAIGHT UP", text: "Si le soy infiel a mi pareja, ¿es absolutamente esencial que se lo diga? ¿Por qué sí o por qué no?" },
+                { type: "STRAIGHT UP", text: "¿Serías (o has sido) un 'invitado especial' en el dormitorio de otra pareja?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Qué fue lo que más te asustó del sexo mientras estabas creciendo o en la pubertad?" },
+                { type: "STRAIGHT UP", text: "¿Tienes fantasías recurrentes que te sorprendan? ¿Nos sorprenderían a nosotros? Ponnos a prueba." },
+                { type: "STRAIGHT UP", text: "¿Cuál es tu posición sexual favorita y por qué?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál ha sido el mayor desorden o desastre que has ocasionado durante el sexo? ¿Tuviste que limpiarlo tú?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Alguna vez has enviado fotos íntimas (nudes)? ¿Cómo compones, encuadras y iluminas estas imágenes?" },
+                { type: "STRAIGHT UP", text: "¿Qué tan abierto eres sobre tus fantasías más íntimas con tu(s) pareja(s)?" },
+                { type: "STRAIGHT UP", text: "¿Crees que estás más hecho para las relaciones abiertas o para la monogamia? ¿Has probado ambas?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has pagado por trabajo sexual? ¿Lo harías?" },
+                { type: "STRAIGHT UP", text: "¿Cuál de tus encuentros casuales generó más drama? ¿Hubo consecuencias permanentes?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Alguna vez has tenido un trío? Si aún no lo has hecho, arma tu trío ideal." },
+                { type: "STRAIGHT UP", text: "¿Quién fue la última persona (además de tu pareja o tus hijos) a la que le viste las partes íntimas?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has usado la ropa interior de otra persona, por accidente o a propósito?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Eres ruidoso durante el sexo? Demuéstralo con una interpretación dramática de tus sonidos característicos en el sexo." },
+                { type: "STRAIGHT UP", text: "¿Alguna vez has llorado después —o durante— del sexo? ¿Fueron lágrimas de alegría, amor o total decepción?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Cuál fue el último objeto que introdujiste dentro de ti o de otra persona?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Alguna vez te han atrapado masturbándote o teniendo relaciones sexuales?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Me he vuelto más sexy desde que me conoces?" },
+                { type: "STRAIGHT UP", text: "¿Qué palabra relacionada con el sexo no estás seguro de cómo se pronuncia?" },
+                { type: "STRAIGHT UP", text: "¿Alguna vez te has filmado teniendo relaciones sexuales? ¿Qué hiciste con la grabación?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cómo describiría tu pareja (o tu ex más reciente) tu vida sexual con el título de una película?" },
+                { type: "STRAIGHT UP", text: "¿Qué es algo que desearías que tu ex hubiera hecho sexualmente, pero no hizo?" },
+                { type: "STRAIGHT UP", text: "¿Qué haría falta para que te acuestes con alguien que no te atrae físicamente en lo absoluto?" },
+                { type: "STRAIGHT UP", text: "¿Qué tanta confianza tienes en tus habilidades para el sexo oral? ¿Qué comentarios o críticas has recibido?" },
+                { type: "THIS ROUND'S ON ME", text: "Busco una historia rara pero real sobre una erección inoportuna o inapropiada." },
+                { type: "MAKE IT A DOUBLE", text: "Describe tu vida sexual con el título de una película y dinos tu razonamiento." },
+                { type: "MAKE IT A DOUBLE", text: "Describe tu vida sexual con el título de una canción." },
+                { type: "STRAIGHT UP", text: "¿Qué ha sido lo más creativo que has tenido que hacer para lograr acostarte con alguien? ¿Qué se interponía en tu camino?" },
+                { type: "STRAIGHT UP", text: "Imagina que somos tus futuros (o actuales) hijos. Cuéntanos cómo se hacen los bebés." },
+                { type: "THIS ROUND'S ON ME", text: "¿Con quién de aquí crees que serías más compatible sexualmente? Se excluyen parejas actuales y pasadas." },
+                { type: "STRAIGHT UP", text: "¿Qué observaste en la pornografía que luego te diste cuenta de que no era realista? ¿Cómo lo descubriste?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Tienes un movimiento sexual de cabecera? ¿Dónde lo aprendiste?" },
+                { type: "STRAIGHT UP", text: "¿Quién fue la última persona (además de tu pareja o tu médico) que vio tus partes íntimas?" },
+                { type: "STRAIGHT UP", text: "Si tuvieras que escribir una guía rápida para lograr excitarte y hacerte venir, ¿cuáles serían los puntos clave?" },
+                { type: "STRAIGHT UP", text: "¿Qué es lo más atrevido o 'kinky' que le has pedido a otra persona que haga? ¿Accedió?" },
+                { type: "STRAIGHT UP", text: "Si nos quedáramos atrapados en una isla desierta, ¿cuántos días pasarían hasta que tengamos sexo por aburrimiento?" },
+                { type: "THIS ROUND'S ON ME", text: "¿Alguna vez te has lesionado durante el sexo? ¿O has lesionado a alguien más?" },
+                { type: "STRAIGHT UP", text: "¡Rápido! Menciona a tu estrella porno favorita. Y cuéntanos sobre todas las maravillosas cualidades que la hacen especial." },
+                { type: "THIS ROUND'S ON ME", text: "Si yo tuviera un hermano o hermana atractivo, ¿estaría fuera de los límites, sexualmente hablando?" },
+                { type: "STRAIGHT UP", text: "Si yo tuviera un padre o madre atractivo, ¿dejarías que te sedujera?" },
+                { type: "MAKE IT A DOUBLE", text: "¿Cuál será el apodo sexy que te pondrán cuando vivas en el asilo de ancianos?" },
+                { type: "THIS ROUND'S ON ME", text: "Describe tu primera vez teniendo relaciones sexuales. Incluye cada momento vergonzoso." }
+            ]
+        };
+
+        const RULES_EXPLANATION = {
+            "STRAIGHT UP": "<h3>Mecánica: STRAIGHT UP</h3><ul class='list-disc pl-5 space-y-2'><li><strong>Pregunta a una persona.</strong></li><li>Si da una respuesta satisfactoria, otórgale la carta como un punto.</li><li>Si no tienen una buena respuesta, o eligen no contestar, ¡ellos beben! Y debes preguntarle a alguien más.</li><li>Si absolutamente nadie responde, ¡tú debes beber!</li></ul>",
+            "MAKE IT A DOUBLE": "<h3>Mecánica: MAKE IT A DOUBLE</h3><ul class='list-disc pl-5 space-y-2'><li>Pregunta a una persona hasta obtener una respuesta. Luego a otra diferente.</li><li>Otorga el punto a tu respuesta favorita. <strong>El perdedor bebe.</strong></li><li>Si solo una persona responde, esa persona gana el punto y tú bebes.</li></ul>",
+            "THIS ROUND'S ON ME": "<h3>Mecánica: THIS ROUND'S ON ME</h3><ul class='list-disc pl-5 space-y-2'><li>Plantea la pregunta a todo el grupo.</li><li>Comenzando por tu izquierda, todos deciden: responder o beber.</li><li>Otorga la carta a tu respuesta favorita. <strong>¡Todos los perdedores beben!</strong></li></ul>",
+            "DUEL_MODE": "<h3>Mecánica: DUELO</h3><ul class='list-disc pl-5 space-y-2'><li> Lean la pregunta en voz alta.</li><li>Ambos deben responder honestamente o <strong>beber</strong>.</li><li>No hay puntos en este modo, solo la verdad o el trago.</li></ul>"
+        };
+
+        let masterDecks = { happy: [], rocks: [], last: [], dirty: [] };
+        let singlePool = [];
+        let currentOptions = [];
+        let activeCard = null;
+        let isTwoPlayerMode = false;
+        let turnCounter = 1;
+        let targetScore = 5;
+        let buyRoundCardsRemaining = 0;
+        let cardsPlayed2p = 0;
+
+        const deckColors = {
+            'Happy Hour': '#ffae19',
+            'On The Rocks': '#e63946',
+            'Last Call': '#8338ec',
+            'Extra Dirty': '#00f5d4'
+        };
+
+        function updateSetupDefaults() {
+            const playerCount = document.getElementById('player_count').value;
+            const targetInput = document.getElementById('target_score');
+            const hintText = document.getElementById('setup_hint');
+            const scoreContainer = document.getElementById('score_setting_container');
+
+            if (playerCount === "2") {
+                targetInput.value = "N/A";
+                hintText.innerText = "Modo Duelo Infinito (hasta 10 cartas)";
+                scoreContainer.classList.add('opacity-50');
+                return;
+            }
+
+            scoreContainer.classList.remove('opacity-50');
+
+            if (playerCount === "3") {
+                targetInput.value = "5 (Fijo)";
+                hintText.innerText = "3 Buy a Round por persona • 5 puntos para ganar";
+            } else if (playerCount === "5") {
+                targetInput.value = "4 (Fijo)";
+                hintText.innerText = "2 Buy a Round por persona • 4 puntos para ganar";
+            } else if (playerCount === "8") {
+                targetInput.value = "3 (Fijo)";
+                hintText.innerText = "1 Buy a Round por persona • 3 puntos para ganar";
+            }
+        }
+
+        function transitionScreens(hideId, showId) {
+            const hideElem = document.getElementById(hideId);
+            const showElem = document.getElementById(showId);
+
+            hideElem.classList.add('animate-fade-out');
+            setTimeout(() => {
+                hideElem.classList.add('hidden-anim');
+                hideElem.classList.remove('animate-fade-out');
+                showElem.classList.remove('hidden-anim');
+                showElem.classList.add('animate-fade-in');
+            }, 400);
+        }
+
+        function startGame() {
+            const playerCount = document.getElementById('player_count').value;
+            isTwoPlayerMode = (playerCount === "2");
+
+            if (playerCount === "3") targetScore = 5;
+            else if (playerCount === "5") targetScore = 4;
+            else if (playerCount === "8") targetScore = 3;
+            else targetScore = 5;
+
+            if (playerCount === "3") buyRoundCardsRemaining = 3;
+            else if (playerCount === "5") buyRoundCardsRemaining = 2;
+            else if (playerCount === "8") buyRoundCardsRemaining = 1;
+            else buyRoundCardsRemaining = 0;
+
+            const activeDecks = [];
+            if (document.getElementById('deck_happy').checked) activeDecks.push(...QUESTIONS_DATABASE.happy.map(q => ({ ...q, deck: 'Happy Hour' })));
+            if (document.getElementById('deck_rocks').checked) activeDecks.push(...QUESTIONS_DATABASE.rocks.map(q => ({ ...q, deck: 'On The Rocks' })));
+            if (document.getElementById('deck_last').checked) activeDecks.push(...QUESTIONS_DATABASE.last.map(q => ({ ...q, deck: 'Last Call' })));
+            if (document.getElementById('deck_dirty').checked) activeDecks.push(...QUESTIONS_DATABASE.dirty.map(q => ({ ...q, deck: 'Extra Dirty' })));
+
+            if (activeDecks.length < 5) {
+                alert("Selecciona más mazos para una mejor experiencia.");
+                return;
+            }
+
+            if (isTwoPlayerMode) {
+                singlePool = activeDecks.sort(() => Math.random() - 0.5).slice(0, 10);
+                cardsPlayed2p = 0;
+                document.getElementById('buy_round_stock_container').classList.add('hidden');
+                document.getElementById('mobile_buy_round_indicator').classList.add('hidden-anim');
+                document.getElementById('score_icon').innerText = "🎴";
+                document.getElementById('score_target_display').innerText = `CARTAS: 0/10`;
+                document.getElementById('start_prompt_2p').classList.remove('hidden-anim');
+                document.getElementById('draw_instruction').innerText = "Toca para robar carta";
+                document.getElementById('card_option_1').classList.add('hidden');
+                document.getElementById('btn_rules').classList.add('hidden');
+            } else {
+                masterDecks.happy = document.getElementById('deck_happy').checked ? [...QUESTIONS_DATABASE.happy.map(q => ({ ...q, deck: 'Happy Hour' }))] : [];
+                masterDecks.rocks = document.getElementById('deck_rocks').checked ? [...QUESTIONS_DATABASE.rocks.map(q => ({ ...q, deck: 'On The Rocks' }))] : [];
+                masterDecks.last = document.getElementById('deck_last').checked ? [...QUESTIONS_DATABASE.last.map(q => ({ ...q, deck: 'Last Call' }))] : [];
+                masterDecks.dirty = document.getElementById('deck_dirty').checked ? [...QUESTIONS_DATABASE.dirty.map(q => ({ ...q, deck: 'Extra Dirty' }))] : [];
+
+                Object.keys(masterDecks).forEach(k => {
+                    if (masterDecks[k].length) masterDecks[k].sort(() => Math.random() - 0.5);
+                });
+
+                document.getElementById('buy_round_stock').innerText = buyRoundCardsRemaining;
+                document.getElementById('mobile_buy_round_stock').innerText = buyRoundCardsRemaining;
+
+                const stockContainer = document.getElementById('buy_round_stock_container');
+                const mobileIndicator = document.getElementById('mobile_buy_round_indicator');
+
+                if (buyRoundCardsRemaining > 0) {
+                    stockContainer.classList.remove('hidden');
+                    stockContainer.classList.add('flex');
+                    mobileIndicator.classList.remove('hidden-anim');
+                } else {
+                    stockContainer.classList.add('hidden');
+                    mobileIndicator.classList.add('hidden-anim');
+                }
+
+                document.getElementById('score_icon').innerText = "🏆";
+                document.getElementById('score_target_display').innerText = `OBJETIVO: ${targetScore}`;
+                document.getElementById('start_prompt_2p').classList.add('hidden-anim');
+                document.getElementById('draw_instruction').innerText = "Escoge tu destino...";
+                document.getElementById('card_option_1').classList.remove('hidden');
+                document.getElementById('btn_rules').classList.remove('hidden');
+            }
+
+            turnCounter = 1;
+            document.getElementById('turn_display').innerText = `RONDA ${turnCounter}`;
+            document.getElementById('abort_btn').style.display = 'block';
+
+            transitionScreens('setup_screen', 'game_screen');
+            generateCardDrawOptions();
+        }
+
+        function generateCardDrawOptions() {
+            const option1 = document.getElementById('card_option_1');
+            const option0 = document.getElementById('card_option_0');
+
+            if (isTwoPlayerMode) {
+                if (cardsPlayed2p >= 10 || singlePool.length === 0) {
+                    showEndState();
+                    return;
+                }
+                currentOptions = [singlePool.pop()];
+                const deckName = currentOptions[0].deck;
+                const tag0 = document.getElementById('mini_tag_0');
+                tag0.innerText = deckName;
+                tag0.style.backgroundColor = deckColors[deckName];
+                option0.style.borderColor = deckColors[deckName];
+
+                option1.classList.add('hidden');
+            } else {
+                let activeDecks = Object.keys(masterDecks).filter(k => masterDecks[k].length > 0);
+                let poolCount = activeDecks.reduce((acc, k) => acc + masterDecks[k].length, 0);
+
+                if (poolCount < 2) {
+                    alert("Fin del mazo. ¡Nadie ganó!");
+                    location.reload();
+                    return;
+                }
+
+                currentOptions = [];
+                for (let i = 0; i < 2; i++) {
+                    let randomDeckKey = activeDecks[Math.floor(Math.random() * activeDecks.length)];
+                    while (masterDecks[randomDeckKey].length === 0) {
+                        randomDeckKey = activeDecks[Math.floor(Math.random() * activeDecks.length)];
+                    }
+                    currentOptions.push(masterDecks[randomDeckKey].pop());
+                }
+
+                const tag0 = document.getElementById('mini_tag_0');
+                const tag1 = document.getElementById('mini_tag_1');
+
+                tag0.innerText = currentOptions[0].deck;
+                tag0.style.backgroundColor = deckColors[currentOptions[0].deck];
+                option0.style.borderColor = deckColors[currentOptions[0].deck];
+
+                tag1.innerText = currentOptions[1].deck;
+                tag1.style.backgroundColor = deckColors[currentOptions[1].deck];
+                option1.style.borderColor = deckColors[currentOptions[1].deck];
+
+                option1.classList.remove('hidden');
+            }
+
+            document.getElementById('draw_phase_zone').classList.remove('hidden-anim');
+            document.getElementById('board_phase_zone').classList.add('hidden-anim');
+            document.getElementById('game_card').classList.remove('flipped');
+        }
+
+        function selectCard(idx) {
+            activeCard = JSON.parse(JSON.stringify(currentOptions[idx]));
+
+            document.getElementById('display_question').innerText = activeCard.text;
+            document.getElementById('display_deck').innerText = activeCard.deck;
+
+            const accentColor = deckColors[activeCard.deck];
+            const cardFront = document.getElementById('card_front_style');
+            cardFront.style.borderColor = accentColor;
+
+            const buyRoundBtn = document.getElementById('btn_buy_round_action');
+
+            if (isTwoPlayerMode) {
+                document.getElementById('display_type').innerText = "DUELO";
+                document.getElementById('display_type').style.color = "#ffffff";
+                buyRoundBtn.classList.add('hidden-anim');
+            } else {
+                document.getElementById('display_type').innerText = activeCard.type;
+                document.getElementById('display_type').style.color = accentColor;
+
+                if (buyRoundCardsRemaining > 0 && activeCard.type !== "THIS ROUND'S ON ME") {
+                    buyRoundBtn.classList.remove('hidden-anim');
+                    buyRoundBtn.innerText = "BUY A ROUND (Power-Up)";
+                    buyRoundBtn.style.opacity = "1";
+                    buyRoundBtn.style.pointerEvents = "auto";
+                } else {
+                    buyRoundBtn.classList.add('hidden-anim');
+                }
+            }
+
+            transitionScreens('draw_phase_zone', 'board_phase_zone');
+        }
+
+        function flipCard() {
+            document.getElementById('game_card').classList.toggle('flipped');
+        }
+
+        function triggerBuyRound() {
+            if (buyRoundCardsRemaining <= 0) return;
+
+            const btn = document.getElementById('btn_buy_round_action');
+            btn.classList.add('animate-power-up');
+
+            buyRoundCardsRemaining--;
+            document.getElementById('buy_round_stock').innerText = buyRoundCardsRemaining;
+            document.getElementById('mobile_buy_round_stock').innerText = buyRoundCardsRemaining;
+
+            if (buyRoundCardsRemaining === 0) {
+                document.getElementById('buy_round_stock_container').classList.add('opacity-50');
+                document.getElementById('mobile_buy_round_indicator').classList.add('opacity-50');
+            }
+
+            setTimeout(() => {
+                activeCard.type = "THIS ROUND'S ON ME (POWER-UP)";
+                document.getElementById('display_type').innerText = activeCard.type;
+                document.getElementById('display_type').style.color = "#00f5d4";
+                btn.style.opacity = "0.5";
+                btn.style.pointerEvents = "none";
+                btn.innerText = "POWER-UP ACTIVADO";
+                btn.classList.remove('animate-power-up');
+            }, 1000);
+        }
+
+        function finishTurn() {
+            if (isTwoPlayerMode) {
+                cardsPlayed2p++;
+                document.getElementById('score_target_display').innerText = `CARTAS: ${cardsPlayed2p}/10`;
+                if (cardsPlayed2p >= 10) {
+                    showEndState();
+                    return;
+                }
+            }
+
+            turnCounter++;
+            document.getElementById('turn_display').innerText = `RONDA ${turnCounter}`;
+            generateCardDrawOptions();
+        }
+
+        function showEndState() {
+            document.getElementById('draw_phase_zone').classList.add('hidden-anim');
+            document.getElementById('board_phase_zone').classList.add('hidden-anim');
+            document.getElementById('end_screen').classList.remove('hidden-anim');
+            document.getElementById('abort_btn').classList.add('hidden');
+        }
+
+        function showCurrentRules() {
+            const body = document.getElementById('modal_body');
+            const type = isTwoPlayerMode ? "DUEL_MODE" : activeCard.type;
+            const displayType = activeCard ? activeCard.type : (isTwoPlayerMode ? "DUELO" : "REGLAS");
+
+            document.getElementById('modal_title').innerText = `Dinámica: ${isTwoPlayerMode ? "DUELO" : displayType}`;
+            body.innerHTML = RULES_EXPLANATION[type.includes("THIS ROUND'S ON ME") ? "THIS ROUND'S ON ME" : type] || RULES_EXPLANATION["STRAIGHT UP"];
+
+            const modal = document.getElementById('rules_modal');
+            modal.classList.remove('hidden-anim');
+            modal.classList.add('animate-fade-in');
+        }
+
+        function closeRules() {
+            const modal = document.getElementById('rules_modal');
+            modal.classList.add('animate-fade-out');
+            setTimeout(() => {
+                modal.classList.add('hidden-anim');
+                modal.classList.remove('animate-fade-out');
+            }, 300);
+        }
+
+        function abortGame() {
+            if (confirm("¿Seguro que quieres reiniciar la noche? Todo el progreso se perderá.")) {
+                location.reload();
+            }
+        }
+
+        updateSetupDefaults();
+    </script>
+</body>
+
+</html>
